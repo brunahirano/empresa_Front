@@ -1,0 +1,34 @@
+<div class="container-main">
+  <!-- side-nav -->
+  <app-header></app-header>
+  <!-- side-nav -->
+  <div class="container w-50 mt-5">
+    <div class="card-body">
+      <h5 class="card-title">Cadastro de Boleto</h5>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Descrição</label>
+          <input type="text" class="form-control" [(ngModel)]="boleto.bo_descricao" name="bo_descricao">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Data de Vencimento</label>
+          <input type="date" class="form-control" [(ngModel)]="boleto.bo_dataVencimento" name="bo_dataVencimento">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Valor</label>
+          <input type="text" currencyMask min="0" class="form-control" [(ngModel)]="boleto.bo_valor" name="bo_valor"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Status</label>
+          <input type="text" class="form-control" [(ngModel)]="boleto.bo_status" name="bo_status" value="PENDENTE"
+            readonly>
+        </div>
+        <button routerLink="/funcionario/funcComCargo" class="btn btn-secondary mx-3">Voltar</button>
+        <button (click)="cadastrarBoleto()" class="btn btn-e">Cadastrar</button>
+      </form>
+    </div>
+    <!--Ícone voltar-->
+    <i routerLink="/funcionario/boleto/{{id_funcionario}}" title="Voltar a página anterior" class="fas fa-arrow-alt-left mt-5"></i>
+  </div>
+</div>

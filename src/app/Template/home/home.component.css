@@ -1,0 +1,69 @@
+#img-home {
+  background-image: url(../../../assets/home.jpg);
+  background-size: cover;
+  background-size: 100%;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+}
+
+section {
+  position: relative;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+section .layout {
+  position: relative;
+  top: 35%;
+  left: 30%;
+  max-width: 600px;
+  padding: 50px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
+  color: rgb(255, 254, 254);
+  font-weight: 400;
+  font-size: 20px;
+}
+
+section .layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-attachment: fixed;
+  filter: blur(8px);
+}
+
+section .layout h2 {
+  position: relative;
+}
+
+section .layout p {
+  position: relative;
+}
+
+@media(max-width: 1024px) {
+
+  section .layout {
+    max-width: 400px;
+    max-height: 250px;
+    font-size: 16px;
+  }
+
+  }
+
+@media(max-width: 768px) {
+
+  section .layout {
+    max-width: 350px;
+    max-height: 150px;
+    font-size: 12px;
+  }
+}

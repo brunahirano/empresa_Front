@@ -1,0 +1,93 @@
+<div class="container-main">
+  <!-- side-nav -->
+  <app-header></app-header>
+  <!-- side-nav -->
+  <div class="container w-75 mt-5">
+    <div class="card-body">
+      <h5 class="card-title">Boletos do funcionário: {{nomeFunc}}</h5>
+      <button class="button-cadastro" routerLink="/funcionario/boleto/cadastrar/{{id_funcionario}}">
+        <span>Cadastrar boleto</span>
+        <svg width="20" height="20" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="37" cy="37" r="35.5" stroke="white" stroke-width="3"></circle>
+          <path
+            d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
+            fill="white"></path>
+        </svg>
+      </button>
+      <div style="height: 300px; overflow: auto;" class="mt-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Data de vencimento</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Status</th>
+              <th scope="col">Pagar/Cancelar</th>
+              <th scope="col" colspan="2">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let boleto of boletos">
+              <th scope="row" class="codigo">{{boleto.codigo}}</th>
+              <td>{{boleto.bo_descricao}}</td>
+              <td>{{boleto.bo_dataVencimento | date : 'dd/MM/yyyy' }}</td>
+              <td>{{boleto.bo_valor | currency:'BRL'}}</td>
+              <td>{{boleto.bo_status}}</td>
+              <td class="td-pagar"><i (click)="open(modalPagar)" *ngIf="boleto.bo_status == 'PENDENTE'"
+                  class="fas fa-comment-dollar mx-2" title="Pagar Boleto"></i>
+                <i (click)="open(modalCancelar)" *ngIf="boleto.bo_status == 'PENDENTE'" class="far fa-window-close mx-2"
+                  title="Cancelar boleto"></i>
+              </td>
+              <td>
+                <i routerLink="/funcionario/boleto/edicao/{{boleto.codigo}}/{{id_funcionario}}" class="fas fa-edit" *ngIf="boleto.bo_status == 'PENDENTE'" title="Editar Boleto"></i>
+              </td>
+              <td>
+                <i routerLink="/funcionario/boleto/exclusao/{{boleto.codigo}}/{{id_funcionario}}"
+                  class="fas fa-trash-alt" title="Excluir Boleto"></i>
+              </td>
+              <!-- Modal de confirmação para pagar Boleto -->
+              <ng-template #modalPagar let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="excluir">Aviso</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <!-- <span aria-hidden="true">&times;</span> -->
+                  </button>
+
+                </div>
+                <div class="modal-body">
+                  <p>Deseja realmente pagar o Boleto {{boleto.bo_descricao}}?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn-s" (click)="modal.close('Save click')">Cancelar</button>
+                  <button type="button" class="btn-e"
+                    (click)="pagarBoleto(boleto.codigo); modal.close('Save click')">Pagar</button>
+                </div>
+              </ng-template>
+              <!-- Modal de confirmação para cancelar o boleto -->
+              <ng-template #modalCancelar let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="excluir">Aviso</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <!-- <span aria-hidden="true">&times;</span> -->
+                  </button>
+
+                </div>
+                <div class="modal-body">
+                  <p>Deseja realmente cancelar o Boleto {{boleto.bo_descricao}}?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn-s" (click)="modal.close('Save click')">Cancelar</button>
+                  <button type="button" class="btn-e"
+                    (click)="cancelarBoleto(boleto.codigo); modal.close('Save click')">Confirmar</button>
+                </div>
+              </ng-template>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--Ícone voltar-->
+      <i routerLink="/funcionario/funcComCargo" class="fas fa-arrow-alt-left mt-5" title="Voltar a página anterior"></i>
+    </div>
+  </div>
+</div>

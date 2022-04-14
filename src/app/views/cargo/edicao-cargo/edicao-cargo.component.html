@@ -1,0 +1,23 @@
+<div class="container-main">
+  <!-- side-nav -->
+  <app-header></app-header>
+  <!-- side-nav -->
+  <div class="container w-50 mt-5">
+  <div class="card-body">
+    <h5 class="card-title">Editar um cargo</h5>
+    <form>
+      <div class="mb-3">
+        <label class="form-label">Nome do cargo</label>
+        <input type="text" class="form-control" [(ngModel)]="cargo.ca_nome" name="ca_nome">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Atribuições do cargo</label>
+        <input type="text" class="form-control" [(ngModel)]="cargo.car_atribuicao" name="car_atribuicao">
+      </div>
+        <button routerLink="/cargo/lista" class="btn btn-secondary mx-3">Cancelar</button>
+        <button class="btn btn-c" (click)="editarCargo()">Editar</button>
+    </form>
+  </div>
+  </div>
+</div>
+

@@ -1,0 +1,21 @@
+span{
+  display: none;
+}
+
+.input-modal{
+  margin: 5% 5%;
+  width: 90%;
+  height: 70%;
+}
+
+.label-modal{
+ margin-left: 15%;
+ font-size: 18px;
+}
+
+.fa-camera{
+  cursor: pointer;
+  color: #033249;
+  cursor: pointer;
+  font-size: 30px;
+}
